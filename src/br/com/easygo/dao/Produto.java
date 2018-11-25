@@ -5,16 +5,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import br.com.easygo.model.Cliente;
+import br.com.easygo.model.Produto;
 
-public class ClienteDao {
+public class ProdutoDao {
 	private Connection connection = null;
 	private Statement stmt = null;
 	private ResultSet resultSet = null;
 	private String tabela = "";
 	
-	public ClienteDao(){
-		this.tabela = "localhost.easygo.cliente";
+	public ProdutoDao(){
+		this.tabela = "localhost.easygo.Produto";
 	}
 	
 	private Connection getConnection() throws SQLException{
@@ -23,14 +23,14 @@ public class ClienteDao {
 		return conn;
 	}
 	
-	public boolean salvaRegistro(Cliente cliente) {
+	public boolean salvaRegistro(Produto produto) {
 		boolean retorno = false;
 		String queryString;
 		
-		if (cliente.getId() == 0) {
-			queryString = "INSERT INTO " + this.tabela + " VALUES('" + cliente.getNome() + "','" + cliente.getTelefone() + "','" + cliente.getDataNascimento() + "','" + cliente.getFoto()+"')";
+		if (Produto.getId() == 0) {
+			queryString = "INSERT INTO " + this.tabela + " VALUES('" + produto.getNome() + "','" + produto.getTipo() + "', '" + produto.getDescricao + "', '" + produto.getPreco + "')";
 		} else {
-			queryString = "UPDATE " + this.tabela + " SET NOME = '" + cliente.getNome() + "', TELEFONE = '" + cliente.getTelefone() + "', DATANASCIMENTO = '" + cliente.getDataNascimento() + "', FOTO = '" + cliente.getFoto() + "')";
+			queryString = "UPDATE " + this.tabela + " SET NOME = '" + produto.getNome() + "', TIPO = '" + produto.getTipo() + "', DESCRICAO = '" + produto.getDescricao + "', PRECO = '" + produto.getPreco + "')";
 		}
 		
 		try{
