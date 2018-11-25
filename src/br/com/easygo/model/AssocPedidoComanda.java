@@ -3,22 +3,22 @@ package br.com.easygo.model;
 public class AssocPedidoComanda {
 
 	private int id;
-	private int numeroPedido;
-	private int numeroComanda;
+	private int idPedido;
+	private int idComanda;
 	
 	public AssocPedidoComanda() {
 		this(0, 0, 0);
 	}
 
-	public AssocPedidoComanda(int id, int numeroPedido, int numeroComanda) {
+	public AssocPedidoComanda(int id, int idPedido, int idComanda) {
 		super();
 		this.id = id;
-		this.numeroPedido = numeroPedido;
-		this.numeroComanda = numeroComanda;
+		this.idPedido = idPedido;
+		this.idComanda = idComanda;
 	}
 	
-	public AssocPedidoComanda(int numeroPedido, int numeroComanda) {
-		this(0, numeroPedido, numeroComanda);
+	public AssocPedidoComanda(int idPedido, int idComanda) {
+		this(0, idPedido, idComanda);
 	}
 
 	public int getId() {
@@ -29,19 +29,19 @@ public class AssocPedidoComanda {
 		this.id = id;
 	}
 
-	public int getNumeroPedido() {
-		return numeroPedido;
+	public int getIdPedido() {
+		return idPedido;
 	}
 
-	public void setNumeroPedido(int numeroPedido) {
-		this.numeroPedido = numeroPedido;
+	public void setIdPedido(int idPedido) {
+		this.idPedido = idPedido;
 	}
 
-	public int getNumeroComanda() {
-		return numeroComanda;
+	public int getIdComanda() {
+		return idComanda;
 	}
 
-	public void setNumeroComanda(int numeroComanda) {
-		this.numeroComanda = numeroComanda;
+	public void setIdComanda(int idComanda) {
+		this.idComanda = idComanda;
 	}
 }

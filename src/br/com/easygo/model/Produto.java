@@ -2,7 +2,7 @@ package br.com.easygo.model;
 
 public class Produto {
 
-	private int codigo;
+	private int id;
 	private String nome;
 	private String tipo;
 	private String descricao;
@@ -12,9 +12,9 @@ public class Produto {
 		this(0, "", "", "", 0.0);
 	}
 
-	public Produto(int codigo, String nome, String tipo, String descricao, double preco) {
+	public Produto(int id, String nome, String tipo, String descricao, double preco) {
 		super();
-		this.codigo = codigo;
+		this.id = id;
 		this.nome = nome;
 		this.tipo = tipo;
 		this.descricao = descricao;
@@ -25,12 +25,12 @@ public class Produto {
 		this(0, nome, tipo, descricao, preco);
 	}
 
-	public int getCodigo() {
-		return codigo;
+	public int getId() {
+		return id;
 	}
 
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getNome() {

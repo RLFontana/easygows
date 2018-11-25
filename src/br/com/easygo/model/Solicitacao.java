@@ -3,7 +3,7 @@ package br.com.easygo.model;
 public class Solicitacao {
 
 	private int id;
-	private int numeroComanda;
+	private int idComanda;
 	private int idGarcom;
 	private bool atendido;
 	
@@ -11,16 +11,16 @@ public class Solicitacao {
 		this(0, 0, 0, false);
 	}
 
-	public Solicitacao(int id, int numeroComanda, idGarcom, atendido) {
+	public Solicitacao(int id, int idComanda, idGarcom, atendido) {
 		super();
 		this.id = id;
-		this.numeroComanda = numeroComanda;
+		this.idComanda = idComanda;
 		this.idGarcom = idGarcom;
 		this.atendido = atendido;
 	}
 	
-	public Solicitacao(int numeroComanda, int idGarcom, bool atendido) {
-		this(0, numeroComanda, idGarcom, atendido);
+	public Solicitacao(int idComanda, int idGarcom, bool atendido) {
+		this(0, idComanda, idGarcom, atendido);
 	}
 
 	public int getId() {
@@ -31,12 +31,12 @@ public class Solicitacao {
 		this.id = id;
 	}
 
-	public int getNumeroComanda() {
-		return numeroComanda;
+	public int getIdComanda() {
+		return idComanda;
 	}
 
-	public void setNumeroComanda(int numeroComanda) {
-		this.numeroComanda = numeroComanda;
+	public void setIdComanda(int idComanda) {
+		this.idComanda = idComanda;
 	}
 	
 	public int getIdGarcom() {

@@ -3,25 +3,25 @@ package br.com.easygo.model;
 import java.util.Date;
 
 public class Comanda {
-	private int numero;
+	private int id;
 	private Date dataHoraAbertura;
 	private Date dataHoraFechamento;
 	private int idCliente;
-	private int numeroMesa;
+	private int idMesa;
 	
-	public Comanda(int numero, Date dataHoraAbertura, Date dataHoraFechamento, int idCliente, int numeroMesa) {
+	public Comanda(int id, Date dataHoraAbertura, Date dataHoraFechamento, int idCliente, int idMesa) {
 		super();
-		this.numero = numero;
+		this.id = id;
 		this.dataHoraAbertura = dataHoraAbertura;
 		this.dataHoraFechamento = dataHoraFechamento;
 		this.idCliente = idCliente;
-		this.numeroMesa = numeroMesa;
+		this.idMesa = idMesa;
 	}
-	public int getNumero() {
-		return numero;
+	public int getId() {
+		return id;
 	}
-	public void setNumero(int numero) {
-		this.numero = numero;
+	public void setId(int id) {
+		this.id = id;
 	}
 	public Date getDataHoraAbertura() {
 		return dataHoraAbertura;
@@ -41,10 +41,10 @@ public class Comanda {
 	public void setIdCliente(int idCliente) {
 		this.idCliente = idCliente;
 	}
-	public int getNumeroMesa() {
-		return numeroMesa;
+	public int getIdMesa() {
+		return idMesa;
 	}
-	public void setNumeroMesa(int numeroMesa) {
-		this.numeroMesa = numeroMesa;
+	public void setIdMesa(int idMesa) {
+		this.idMesa = idMesa;
 	}
 }

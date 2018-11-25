@@ -8,23 +8,23 @@ public class ItemPedido {
 	private String situacao;
 	private double precoUnitario;
 	private Date dataHoraEntrega;
-	private int codigoproduto;
+	private int idProduto;
 	private int idGarcom;
-	private int numeromesa;
-	private int numeroPedido;
+	private int idMesa;
+	private int idPedido;
 	
 	public ItemPedido(int id, int quantidade, String situacao, double precoUnitario, Date dataHoraEntrega,
-			int codigoproduto, int idGarcom, int numeromesa, int numeroPedido) {
+			int idProduto, int idGarcom, int idMesa, int idPedido) {
 		super();
 		this.id = id;
 		this.quantidade = quantidade;
 		this.situacao = situacao;
 		this.precoUnitario = precoUnitario;
 		this.dataHoraEntrega = dataHoraEntrega;
-		this.codigoproduto = codigoproduto;
+		this.idProduto = idProduto;
 		this.idGarcom = idGarcom;
-		this.numeromesa = numeromesa;
-		this.numeroPedido = numeroPedido;
+		this.idMesa = idMesa;
+		this.idPedido = idPedido;
 	}
 	public int getId() {
 		return id;
@@ -56,11 +56,11 @@ public class ItemPedido {
 	public void setDataHoraEntrega(Date dataHoraEntrega) {
 		this.dataHoraEntrega = dataHoraEntrega;
 	}
-	public int getCodigoproduto() {
-		return codigoproduto;
+	public int getIdproduto() {
+		return idProduto;
 	}
-	public void setCodigoproduto(int codigoproduto) {
-		this.codigoproduto = codigoproduto;
+	public void setIdproduto(int idProduto) {
+		this.idProduto = idProduto;
 	}
 	public int getIdGarcom() {
 		return idGarcom;
@@ -68,17 +68,17 @@ public class ItemPedido {
 	public void setIdGarcom(int idGarcom) {
 		this.idGarcom = idGarcom;
 	}
-	public int getNumeromesa() {
-		return numeromesa;
+	public int getIdMesa() {
+		return idMesa;
 	}
-	public void setNumeromesa(int numeromesa) {
-		this.numeromesa = numeromesa;
+	public void setIdMesa(int idMesa) {
+		this.idMesa = idMesa;
 	}
-	public int getNumeroPedido() {
-		return numeroPedido;
+	public int getIdPedido() {
+		return idPedido;
 	}
-	public void setNumeroPedido(int numeroPedido) {
-		this.numeroPedido = numeroPedido;
+	public void setIdPedido(int idPedido) {
+		this.idPedido = idPedido;
 	}
 	
 	

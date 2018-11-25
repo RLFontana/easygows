@@ -1,23 +1,23 @@
 package br.com.easygo.model;
 
 public class Mesa {
-	private int numero;
+	private int id;
 	private int quantidadeCadeiras;
 	private String situacao;
 	
-	public Mesa(int numero, int quantidadeCadeiras, String situacao) {
+	public Mesa(int id, int quantidadeCadeiras, String situacao) {
 		super();
-		this.numero = numero;
+		this.id = id;
 		this.quantidadeCadeiras = quantidadeCadeiras;
 		this.situacao = situacao;
 	}
 
-	public int getNumero() {
-		return numero;
+	public int getId() {
+		return id;
 	}
 
-	public void setNumero(int numero) {
-		this.numero = numero;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public int getQuantidadeCadeiras() {
@@ -35,6 +35,4 @@ public class Mesa {
 	public void setSituacao(String situacao) {
 		this.situacao = situacao;
 	}
-	
-	
 }
