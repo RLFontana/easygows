@@ -5,13 +5,13 @@ public class Solicitacao {
 	private int id;
 	private int idComanda;
 	private int idGarcom;
-	private bool atendido;
+	private boolean atendido;
 	
 	public Solicitacao() {
 		this(0, 0, 0, false);
 	}
 
-	public Solicitacao(int id, int idComanda, idGarcom, atendido) {
+	public Solicitacao(int id, int idComanda, int idGarcom, boolean atendido) {
 		super();
 		this.id = id;
 		this.idComanda = idComanda;
@@ -19,7 +19,7 @@ public class Solicitacao {
 		this.atendido = atendido;
 	}
 	
-	public Solicitacao(int idComanda, int idGarcom, bool atendido) {
+	public Solicitacao(int idComanda, int idGarcom, boolean atendido) {
 		this(0, idComanda, idGarcom, atendido);
 	}
 
@@ -47,11 +47,11 @@ public class Solicitacao {
 		this.idGarcom = idGarcom;
 	}
 	
-	public int getAtendido() {
+	public boolean getAtendido() {
 		return atendido;
 	}
 
-	public void setAtendido(bool atendido) {
+	public void setAtendido(boolean atendido) {
 		this.atendido = atendido;
 	}
 }

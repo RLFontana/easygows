@@ -8,7 +8,7 @@ public class ConnectionFactory {
 	private String driverClassName = "com.mysql.cj.jdbc.Driver";
 	private static ConnectionFactory connectionFactory = null;
 
-	private String connectionUrl = "jdbc:mysql://localhost:3306/easygo";
+	private String connectionUrl = "jdbc:mysql://localhost:3306/easygo?useTimezone=true&serverTimezone=UTC";
 	
 	private ConnectionFactory(){
 		try{
@@ -22,7 +22,7 @@ public class ConnectionFactory {
 
 	public Connection getConnection() throws SQLException {
 		Connection conn = null;
-		conn = DriverManager.getConnection(connectionUrl, "root", "root");
+		conn = DriverManager.getConnection(connectionUrl, "root", "117066");
 		return conn;
 	}
 
