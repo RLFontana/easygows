@@ -6,19 +6,20 @@ public class ItemPedido {
 	private int id;
 	private int quantidade;
 	private String situacao;
-	private double precounitario;
+	private double precoUnitario;
 	private Date dataHoraEntrega;
 	private int codigoproduto;
 	private int idGarcom;
 	private int numeromesa;
 	private int numeroPedido;
-	public ItemPedido(int id, int quantidade, String situacao, double precounitario, Date dataHoraEntrega,
+	
+	public ItemPedido(int id, int quantidade, String situacao, double precoUnitario, Date dataHoraEntrega,
 			int codigoproduto, int idGarcom, int numeromesa, int numeroPedido) {
 		super();
 		this.id = id;
 		this.quantidade = quantidade;
 		this.situacao = situacao;
-		this.precounitario = precounitario;
+		this.precoUnitario = precoUnitario;
 		this.dataHoraEntrega = dataHoraEntrega;
 		this.codigoproduto = codigoproduto;
 		this.idGarcom = idGarcom;
@@ -43,11 +44,11 @@ public class ItemPedido {
 	public void setSituacao(String situacao) {
 		this.situacao = situacao;
 	}
-	public double getPrecounitario() {
-		return precounitario;
+	public double getPrecoUnitario() {
+		return precoUnitario;
 	}
-	public void setPrecounitario(double precounitario) {
-		this.precounitario = precounitario;
+	public void setPrecoUnitario(double precoUnitario) {
+		this.precoUnitario = precoUnitario;
 	}
 	public Date getDataHoraEntrega() {
 		return dataHoraEntrega;
