@@ -8,6 +8,11 @@ public class Cliente {
 	private String telefone;
 	private Date dataNascimento;
 	private String foto;
+	
+	public Cliente() {
+		this(0, "", "", null, "");
+	}
+	
 	public Cliente(int id, String nome, String telefone, Date dataNascimento, String foto) {
 		super();
 		this.id = id;

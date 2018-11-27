@@ -13,6 +13,10 @@ public class ItemPedido {
 	private int idMesa;
 	private int idPedido;
 	
+	public ItemPedido() {
+		this(0, 0, "", 0.0, null, 0, 0, 0, 0);
+	}
+	
 	public ItemPedido(int id, int quantidade, String situacao, double precoUnitario, Date dataHoraEntrega,
 			int idProduto, int idGarcom, int idMesa, int idPedido) {
 		super();
@@ -56,10 +60,10 @@ public class ItemPedido {
 	public void setDataHoraEntrega(Date dataHoraEntrega) {
 		this.dataHoraEntrega = dataHoraEntrega;
 	}
-	public int getIdproduto() {
+	public int getIdProduto() {
 		return idProduto;
 	}
-	public void setIdproduto(int idProduto) {
+	public void setIdProduto(int idProduto) {
 		this.idProduto = idProduto;
 	}
 	public int getIdGarcom() {

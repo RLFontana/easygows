@@ -4,14 +4,20 @@ import java.util.Date;
 
 public class Comanda {
 	private int id;
+	private int numero;
 	private Date dataHoraAbertura;
 	private Date dataHoraFechamento;
 	private int idCliente;
 	private int idMesa;
 	
-	public Comanda(int id, Date dataHoraAbertura, Date dataHoraFechamento, int idCliente, int idMesa) {
+	public Comanda() {
+		this(0, 0, null, null, 0, 0);
+	}
+	
+	public Comanda(int id, int numero, Date dataHoraAbertura, Date dataHoraFechamento, int idCliente, int idMesa) {
 		super();
 		this.id = id;
+		this.numero = numero;
 		this.dataHoraAbertura = dataHoraAbertura;
 		this.dataHoraFechamento = dataHoraFechamento;
 		this.idCliente = idCliente;
@@ -22,6 +28,12 @@ public class Comanda {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+	public int getNumero() {
+		return numero;
 	}
 	public Date getDataHoraAbertura() {
 		return dataHoraAbertura;

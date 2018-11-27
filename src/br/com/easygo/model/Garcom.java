@@ -4,12 +4,18 @@ public class Garcom {
 	private int id;
 	private String matricula;
 	private String nome;
+	
+	public Garcom() {
+		this(0, "", "");
+	}
+	
 	public Garcom(int id, String matricula, String nome) {
 		super();
 		this.id = id;
 		this.matricula = matricula;
 		this.nome = nome;
 	}
+	
 	public int getId() {
 		return id;
 	}
