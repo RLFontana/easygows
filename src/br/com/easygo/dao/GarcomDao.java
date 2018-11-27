@@ -14,13 +14,71 @@ public class GarcomDao {
 	private String tabela = "";
 	
 	public GarcomDao(){
-		this.tabela = "localhost.easygo.Garcom";
+		this.tabela = "garcom";
 	}
 	
 	private Connection getConnection() throws SQLException{
 		Connection conn;
 		conn = ConnectionFactory.getInstance().getConnection();
 		return conn;
+	}
+	
+	public Garcom[] getGarcom() {
+		Garcom garcom = null;
+		Garcom[] retorno = null;
+		String queryString = "SELECT * FROM garcom";
+		int rowCount = 0;
+		int i = 0;
+		
+		try {
+			connection = getConnection();
+			stmt = connection.createStatement();
+			resultSet = stmt.executeQuery(queryString);
+			
+			if (resultSet.last()) {
+				rowCount = resultSet.getRow();
+				resultSet.beforeFirst();
+			}
+			
+			retorno = new Garcom[rowCount];
+			
+			while(resultSet.next()) {
+				garcom = new Garcom();
+				
+				garcom.setId(resultSet.getInt("id"));
+				garcom.setMatricula(resultSet.getString("matricula"));
+				garcom.setNome(resultSet.getString("nome"));
+				
+				retorno[i] = garcom;
+				
+				i++;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return retorno;
+	}
+	
+	public Garcom getGarcomByCodigo(String matricula) {
+		Garcom garcom = new Garcom();
+		String queryString = "SELECT * FROM garcom WHERE matricula = " + matricula;
+		
+		try {
+			connection = getConnection();
+			stmt = connection.createStatement();
+			resultSet = stmt.executeQuery(queryString);
+			
+			if (resultSet.first()) {
+				garcom.setId(resultSet.getInt("id"));
+				garcom.setMatricula(resultSet.getString("matricula"));
+				garcom.setNome(resultSet.getString("nome"));	
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return garcom;
 	}
 	
 	public boolean salvaRegistro(Garcom garcom) {
@@ -30,7 +88,7 @@ public class GarcomDao {
 		if (garcom.getId() == 0) {
 			queryString = "INSERT INTO " + this.tabela + " VALUES('" + garcom.getMatricula() + "','" + garcom.getNome() + "')";
 		} else {
-			queryString = "UPDATE " + this.tabela + " SET MATRICULA = '" + garcom.getMatricula() + "', NOME = '" + garcom.getNome() + "')";
+			queryString = "UPDATE " + this.tabela + " SET MATRICULA = '" + garcom.getMatricula() + "', NOME = '" + garcom.getNome() + "' WHERE ID = " + garcom.getId();;
 		}
 		
 		try{
@@ -39,6 +97,22 @@ public class GarcomDao {
 			stmt.execute(queryString);
 			retorno = true;
 		}catch (SQLException e){
+			e.printStackTrace();
+		}
+		
+		return retorno;
+	}
+	
+	public boolean deletaRegistro(int id) {
+		boolean retorno = false;
+		String queryString = "DELETE FROM " + this.tabela + " WHERE id = " + id;
+		
+		try {
+			connection = getConnection();
+			stmt = connection.createStatement();
+			stmt.execute(queryString);
+			retorno = true;
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		

@@ -22,7 +22,7 @@ public class ConnectionFactory {
 
 	public Connection getConnection() throws SQLException {
 		Connection conn = null;
-		conn = DriverManager.getConnection(connectionUrl, "root", "117066");
+		conn = DriverManager.getConnection(connectionUrl, "root", "root");
 		return conn;
 	}
 

@@ -14,7 +14,7 @@ public class MesaDao {
 	private String tabela = "";
 	
 	public MesaDao(){
-		this.tabela = "localhost.easygo.Mesa";
+		this.tabela = "mesa";
 	}
 	
 	private Connection getConnection() throws SQLException{
@@ -23,14 +23,74 @@ public class MesaDao {
 		return conn;
 	}
 	
+	public Mesa[] getMesa() {
+		Mesa mesa = null;
+		Mesa[] retorno = null;
+		String queryString = "SELECT * FROM mesa";
+		int rowCount = 0;
+		int i = 0;
+		
+		try {
+			connection = getConnection();
+			stmt = connection.createStatement();
+			resultSet = stmt.executeQuery(queryString);
+			
+			if (resultSet.last()) {
+				rowCount = resultSet.getRow();
+				resultSet.beforeFirst();
+			}
+			
+			retorno = new Mesa[rowCount];
+			
+			while(resultSet.next()) {
+				mesa = new Mesa();
+				
+				mesa.setId(resultSet.getInt("id"));
+				mesa.setNumero(resultSet.getInt("numero"));
+				mesa.setQuantidadeCadeiras(resultSet.getInt("quantidadeCadeiras"));
+				mesa.setSituacao(resultSet.getString("situacao"));
+				
+				retorno[i] = mesa;
+				
+				i++;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return retorno;
+	}
+	
+	public Mesa getMesaByCodigo(int numero) {
+		Mesa mesa = new Mesa();
+		String queryString = "SELECT * FROM mesa WHERE numero = " + numero;
+		
+		try {
+			connection = getConnection();
+			stmt = connection.createStatement();
+			resultSet = stmt.executeQuery(queryString);
+			
+			if (resultSet.first()) {
+				mesa.setId(resultSet.getInt("id"));
+				mesa.setNumero(resultSet.getInt("numero"));
+				mesa.setQuantidadeCadeiras(resultSet.getInt("quantidadeCadeiras"));
+				mesa.setSituacao(resultSet.getString("situacao"));	
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return mesa;
+	}
+	
 	public boolean salvaRegistro(Mesa mesa) {
 		boolean retorno = false;
 		String queryString;
 		
 		if (mesa.getId() == 0) {
-			queryString = "INSERT INTO " + this.tabela + " VALUES('" + mesa.getQuantidadeCadeiras() + "','" + mesa.getSituacao() + "')";
+			queryString = "INSERT INTO " + this.tabela + " VALUES('" + mesa.getNumero() + "','" + mesa.getQuantidadeCadeiras() + "','" + mesa.getSituacao() + "')";
 		} else {
-			queryString = "UPDATE " + this.tabela + " SET QUANTIDADEDECADEIRAS = '" + mesa.getQuantidadeCadeiras() + "', SITUACAO = '" + mesa.getSituacao() + "')";
+			queryString = "UPDATE " + this.tabela + " SET NUMERO = '" + mesa.getNumero() + "', QUANTIDADEDECADEIRAS = '" + mesa.getQuantidadeCadeiras() + "', SITUACAO = '" + mesa.getSituacao() + "' WHERE ID = " + mesa.getId();;
 		}
 		
 		try{
@@ -39,6 +99,22 @@ public class MesaDao {
 			stmt.execute(queryString);
 			retorno = true;
 		}catch (SQLException e){
+			e.printStackTrace();
+		}
+		
+		return retorno;
+	}
+	
+	public boolean deletaRegistro(int id) {
+		boolean retorno = false;
+		String queryString = "DELETE FROM " + this.tabela + " WHERE id = " + id;
+		
+		try {
+			connection = getConnection();
+			stmt = connection.createStatement();
+			stmt.execute(queryString);
+			retorno = true;
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
