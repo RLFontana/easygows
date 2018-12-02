@@ -23,7 +23,7 @@ public class MesaDao {
 		return conn;
 	}
 	
-	public Mesa[] getMesa() {
+	public Mesa[] getListaMesa() {
 		Mesa mesa = null;
 		Mesa[] retorno = null;
 		String queryString = "SELECT * FROM mesa";

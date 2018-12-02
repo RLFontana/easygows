@@ -23,7 +23,7 @@ public class ComandaDao {
 		return conn;
 	}
 	
-	public Comanda[] getComanda() {
+	public Comanda[] getListaComanda() {
 		Comanda comanda = null;
 		Comanda[] retorno = null;
 		String queryString = "SELECT * FROM comanda";
@@ -49,7 +49,6 @@ public class ComandaDao {
 				comanda.setDataHoraAbertura(resultSet.getDate("dataHoraAbertura"));
 				comanda.setDataHoraFechamento(resultSet.getDate("dataHoraFechamento"));
 				comanda.setIdCliente(resultSet.getInt("idCliente"));
-				comanda.setIdMesa(resultSet.getInt("idMesa"));
 				comanda.setNumero(resultSet.getInt("numero"));
 				
 				retorno[i] = comanda;
@@ -77,7 +76,6 @@ public class ComandaDao {
 				comanda.setDataHoraAbertura(resultSet.getDate("dataHoraAbertura"));
 				comanda.setDataHoraFechamento(resultSet.getDate("dataHoraFechamento"));
 				comanda.setIdCliente(resultSet.getInt("idCliente"));
-				comanda.setIdMesa(resultSet.getInt("idMesa"));
 				comanda.setNumero(resultSet.getInt("numero"));	
 			}
 		} catch (SQLException e) {
@@ -92,9 +90,9 @@ public class ComandaDao {
 		String queryString;
 		
 		if (comanda.getId() == 0) {
-			queryString = "INSERT INTO " + this.tabela + " VALUES('" + comanda.getNumero() + "', '" + comanda.getDataHoraAbertura() + "','" + comanda.getDataHoraFechamento() + "','" + comanda.getIdCliente() + "', '" + comanda.getIdMesa() + "')";
+			queryString = "INSERT INTO " + this.tabela + " VALUES('" + comanda.getNumero() + "', '" + comanda.getDataHoraAbertura() + "','" + comanda.getDataHoraFechamento() + "','" + comanda.getIdCliente() + "')";
 		} else {
-			queryString = "UPDATE " + this.tabela + " SET NUMERO = '" + comanda.getNumero() + "', DATAHORAABERTURA = '" + comanda.getDataHoraAbertura() + "', DATAHORAFECHAMENTO = '" + comanda.getDataHoraFechamento() + "', IDCLIENTE = '" + comanda.getIdCliente() + "', IDMESA = '" + comanda.getIdMesa() + "' WHERE ID = " + comanda.getId();
+			queryString = "UPDATE " + this.tabela + " SET NUMERO = '" + comanda.getNumero() + "', DATAHORAABERTURA = '" + comanda.getDataHoraAbertura() + "', DATAHORAFECHAMENTO = '" + comanda.getDataHoraFechamento() + "', IDCLIENTE = '" + comanda.getIdCliente() + "' WHERE ID = " + comanda.getId();
 		}
 		
 		try{

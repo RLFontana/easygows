@@ -23,7 +23,7 @@ public class GarcomDao {
 		return conn;
 	}
 	
-	public Garcom[] getGarcom() {
+	public Garcom[] getListaGarcom() {
 		Garcom garcom = null;
 		Garcom[] retorno = null;
 		String queryString = "SELECT * FROM garcom";
@@ -60,7 +60,7 @@ public class GarcomDao {
 		return retorno;
 	}
 	
-	public Garcom getGarcomByCodigo(String matricula) {
+	public Garcom getGarcomByMatricula(String matricula) {
 		Garcom garcom = new Garcom();
 		String queryString = "SELECT * FROM garcom WHERE matricula = " + matricula;
 		

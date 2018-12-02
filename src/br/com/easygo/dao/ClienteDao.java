@@ -23,7 +23,7 @@ public class ClienteDao {
 		return conn;
 	}
 	
-	public Cliente[] getCliente() {
+	public Cliente[] getListaCliente() {
 		Cliente cliente = null;
 		Cliente[] retorno = null;
 		String queryString = "SELECT * FROM cliente";

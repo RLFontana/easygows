@@ -23,7 +23,7 @@ public class ProdutoDao {
 		return conn;
 	}
 	
-	public Produto[] getProdutos() {
+	public Produto[] getListaProduto() {
 		Produto produto = null;
 		Produto[] retorno = null;
 		String queryString = "SELECT * FROM produto";

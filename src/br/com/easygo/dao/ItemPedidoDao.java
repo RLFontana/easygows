@@ -23,7 +23,7 @@ public class ItemPedidoDao {
 		return conn;
 	}
 	
-	public ItemPedido[] getItemPedido() {
+	public ItemPedido[] getListaItemPedido() {
 		ItemPedido itemPedido = null;
 		ItemPedido[] retorno = null;
 		String queryString = "SELECT * FROM itempedido";
@@ -48,6 +48,7 @@ public class ItemPedidoDao {
 				itemPedido.setId(resultSet.getInt("id"));
 				itemPedido.setDataHoraEntrega(resultSet.getDate("dataHoraEntrega"));
 				itemPedido.setIdGarcom(resultSet.getInt("idGarcom"));
+				itemPedido.setQtComanda(resultSet.getInt("qtComanda"));
 				itemPedido.setIdMesa(resultSet.getInt("idMesa"));
 				itemPedido.setIdPedido(resultSet.getInt("idPedido"));
 				itemPedido.setIdProduto(resultSet.getInt("idProduto"));
@@ -80,6 +81,7 @@ public class ItemPedidoDao {
 				itemPedido.setDataHoraEntrega(resultSet.getDate("dataHoraEntrega"));
 				itemPedido.setIdGarcom(resultSet.getInt("idGarcom"));
 				itemPedido.setIdMesa(resultSet.getInt("idMesa"));
+				itemPedido.setQtComanda(resultSet.getInt("qtComanda"));
 				itemPedido.setIdPedido(resultSet.getInt("idPedido"));
 				itemPedido.setIdProduto(resultSet.getInt("idProduto"));
 				itemPedido.setPrecoUnitario(resultSet.getDouble("precoUnitario"));
@@ -98,9 +100,9 @@ public class ItemPedidoDao {
 		String queryString;
 		
 		if (itemPedido.getId() == 0) {
-			queryString = "INSERT INTO " + this.tabela + " VALUES('" + itemPedido.getQuantidade() + "','" + itemPedido.getSituacao() + "','" + itemPedido.getPrecoUnitario() + "','" + itemPedido.getDataHoraEntrega() + "','" + itemPedido.getIdPedido() + "','" + itemPedido.getIdGarcom() + "','" + itemPedido.getIdMesa() + "','" + itemPedido.getIdPedido() + "')";
+			queryString = "INSERT INTO " + this.tabela + " VALUES('" + itemPedido.getQuantidade() + "','" + itemPedido.getSituacao() + "','" + itemPedido.getPrecoUnitario() + "','" + itemPedido.getDataHoraEntrega() + "','" + itemPedido.getQtComanda() + "','" + itemPedido.getIdPedido() + "','" + itemPedido.getIdGarcom() + "','" + itemPedido.getIdMesa() + "','" + itemPedido.getIdPedido() + "')";
 		} else {
-			queryString = "UPDATE " + this.tabela + " SET QUANTIDADE = '" + itemPedido.getQuantidade() + "', SITUACAO = '" + itemPedido.getSituacao() + "', PRECOUNITARIO = '" + itemPedido.getPrecoUnitario() + "', DATAHORAENTREGA = '" + itemPedido.getDataHoraEntrega() + "', IDPRODUTO = '" + itemPedido.getIdPedido() + "', IDMESA = '" + itemPedido.getIdMesa() + "' WHERE ID = " + itemPedido.getId();;
+			queryString = "UPDATE " + this.tabela + " SET QUANTIDADE = '" + itemPedido.getQuantidade() + "', SITUACAO = '" + itemPedido.getSituacao() + "', PRECOUNITARIO = '" + itemPedido.getPrecoUnitario() + "', DATAHORAENTREGA = '" + itemPedido.getDataHoraEntrega() + ", QTCOMANDA='" + itemPedido.getQtComanda() + "', IDPRODUTO = '" + itemPedido.getIdPedido() + "', IDMESA = '" + itemPedido.getIdMesa() + "' WHERE ID = " + itemPedido.getId();;
 		}
 		
 		try{

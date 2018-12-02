@@ -23,7 +23,7 @@ public class PedidoDao {
 		return conn;
 	}
 	
-	public Pedido[] getPedido() {
+	public Pedido[] getListaPedido() {
 		Pedido pedido = null;
 		Pedido[] retorno = null;
 		String queryString = "SELECT * FROM pedido";
@@ -49,7 +49,6 @@ public class PedidoDao {
 				pedido.setDataHoraConfirmacao(resultSet.getDate("dataHoraConfirmacao"));
 				pedido.setDataHoraInclusao(resultSet.getDate("dataHoraInclusao"));
 				pedido.setIdGarcom(resultSet.getInt("idGarcom"));
-				pedido.setIdSolicitacao(resultSet.getInt("idSolicitacao"));
 				pedido.setNumero(resultSet.getInt("numero"));
 				
 				retorno[i] = pedido;
@@ -77,7 +76,6 @@ public class PedidoDao {
 				pedido.setDataHoraConfirmacao(resultSet.getDate("dataHoraConfirmacao"));
 				pedido.setDataHoraInclusao(resultSet.getDate("dataHoraInclusao"));
 				pedido.setIdGarcom(resultSet.getInt("idGarcom"));
-				pedido.setIdSolicitacao(resultSet.getInt("idSolicitacao"));
 				pedido.setNumero(resultSet.getInt("numero"));	
 			}
 		} catch (SQLException e) {
@@ -92,9 +90,9 @@ public class PedidoDao {
 		String queryString;
 		
 		if (pedido.getId() == 0) {
-			queryString = "INSERT INTO " + this.tabela + " VALUES('" + pedido.getNumero() + "','" + pedido.getDataHoraInclusao() + "','" + pedido.getDataHoraConfirmacao() + "', '" + pedido.getIdGarcom() + "', '" + pedido.getIdSolicitacao() + "')";
+			queryString = "INSERT INTO " + this.tabela + " VALUES('" + pedido.getNumero() + "','" + pedido.getDataHoraInclusao() + "','" + pedido.getDataHoraConfirmacao() + "', '" + pedido.getIdGarcom() + "')";
 		} else {
-			queryString = "UPDATE " + this.tabela + " SET NUMERO = '" + pedido.getNumero() + "', DATAHORAINCLUSAO = '" + pedido.getDataHoraInclusao() + "', DATAHORACONFIRMACAO = '" + pedido.getDataHoraConfirmacao() + "', IDGARCOM = '" + pedido.getIdGarcom() + "', IDSOLICITACAO = '" + pedido.getIdSolicitacao() + "' WHERE ID = " + pedido.getId();;
+			queryString = "UPDATE " + this.tabela + " SET NUMERO = '" + pedido.getNumero() + "', DATAHORAINCLUSAO = '" + pedido.getDataHoraInclusao() + "', DATAHORACONFIRMACAO = '" + pedido.getDataHoraConfirmacao() + "', IDGARCOM = '" + pedido.getIdGarcom() + " WHERE ID = " + pedido.getId();;
 		}
 		
 		try{
