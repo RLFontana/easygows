@@ -8,20 +8,18 @@ public class Comanda {
 	private Date dataHoraAbertura;
 	private Date dataHoraFechamento;
 	private int idCliente;
-	private int idMesa;
 	
 	public Comanda() {
-		this(0, 0, null, null, 0, 0);
+		this(0, 0, null, null, 0);
 	}
 	
-	public Comanda(int id, int numero, Date dataHoraAbertura, Date dataHoraFechamento, int idCliente, int idMesa) {
+	public Comanda(int id, int numero, Date dataHoraAbertura, Date dataHoraFechamento, int idCliente) {
 		super();
 		this.id = id;
 		this.numero = numero;
 		this.dataHoraAbertura = dataHoraAbertura;
 		this.dataHoraFechamento = dataHoraFechamento;
 		this.idCliente = idCliente;
-		this.idMesa = idMesa;
 	}
 	public int getId() {
 		return id;
@@ -52,11 +50,5 @@ public class Comanda {
 	}
 	public void setIdCliente(int idCliente) {
 		this.idCliente = idCliente;
-	}
-	public int getIdMesa() {
-		return idMesa;
-	}
-	public void setIdMesa(int idMesa) {
-		this.idMesa = idMesa;
 	}
 }

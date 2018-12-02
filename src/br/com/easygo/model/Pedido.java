@@ -8,20 +8,18 @@ public class Pedido {
 	private Date dataHoraInclusao;
 	private Date dataHoraConfirmacao;
 	private int idGarcom;
-	private int idSolicitacao;
 	
 	public Pedido() {
-		this(0, 0, null, null, 0, 0);
+		this(0, 0, null, null, 0);
 	}
 	
-	public Pedido(int id, int numero, Date dataHoraInclusao, Date dataHoraConfirmacao, int idGarcom, int idSolicitacao) {
+	public Pedido(int id, int numero, Date dataHoraInclusao, Date dataHoraConfirmacao, int idGarcom) {
 		super();
 		this.id = id;
 		this.numero = numero;
 		this.dataHoraInclusao = dataHoraInclusao;
 		this.dataHoraConfirmacao = dataHoraConfirmacao;
 		this.idGarcom = idGarcom;
-		this.idSolicitacao = idSolicitacao;
 	}
 	public int getId() {
 		return id;
@@ -52,11 +50,5 @@ public class Pedido {
 	}
 	public void setIdGarcom(int idGarcom) {
 		this.idGarcom = idGarcom;
-	}
-	public int getIdSolicitacao() {
-		return idSolicitacao;
-	}
-	public void setIdSolicitacao(int idSolicitacao) {
-		this.idSolicitacao = idSolicitacao;
 	}
 }

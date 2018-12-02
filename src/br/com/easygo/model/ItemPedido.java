@@ -8,23 +8,25 @@ public class ItemPedido {
 	private String situacao;
 	private double precoUnitario;
 	private Date dataHoraEntrega;
+	private int qtComanda;
 	private int idProduto;
 	private int idGarcom;
 	private int idMesa;
 	private int idPedido;
 	
 	public ItemPedido() {
-		this(0, 0, "", 0.0, null, 0, 0, 0, 0);
+		this(0, 0, "", 0.0, null, 0, 0, 0, 0, 0);
 	}
 	
 	public ItemPedido(int id, int quantidade, String situacao, double precoUnitario, Date dataHoraEntrega,
-			int idProduto, int idGarcom, int idMesa, int idPedido) {
+			int qtComanda, int idProduto, int idGarcom, int idMesa, int idPedido) {
 		super();
 		this.id = id;
 		this.quantidade = quantidade;
 		this.situacao = situacao;
 		this.precoUnitario = precoUnitario;
 		this.dataHoraEntrega = dataHoraEntrega;
+		this.qtComanda = qtComanda;
 		this.idProduto = idProduto;
 		this.idGarcom = idGarcom;
 		this.idMesa = idMesa;
@@ -62,6 +64,12 @@ public class ItemPedido {
 	}
 	public int getIdProduto() {
 		return idProduto;
+	}
+	public void setQtComanda(int qtComanda) {
+		this.qtComanda = qtComanda;
+	}
+	public int getQtComanda() {
+		return qtComanda;
 	}
 	public void setIdProduto(int idProduto) {
 		this.idProduto = idProduto;
