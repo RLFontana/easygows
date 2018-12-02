@@ -24,7 +24,7 @@ public class ProdutoController {
 		
 		ProdutoDao dao = new ProdutoDao();
 		
-		Produto[] produtos = dao.getProdutos();
+		Produto[] produtos = dao.getListaProduto();
 		
 		String retorno = gson.toJson(produtos, Produto[].class);
 		
