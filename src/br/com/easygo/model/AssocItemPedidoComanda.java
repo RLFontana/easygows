@@ -3,24 +3,20 @@ package br.com.easygo.model;
 public class AssocItemPedidoComanda {
 
 	private int id;
-	private int idItemPedido;
-	private int idComanda;
+	private ItemPedido itemPedido;
+	private Comanda comanda;
 	
 	public AssocItemPedidoComanda() {
-		this(0, 0, 0);
+		this(0, null, null);
 	}
 
-	public AssocItemPedidoComanda(int id, int idItemPedido, int idComanda) {
+	public AssocItemPedidoComanda(int id, ItemPedido itemPedido, Comanda comanda) {
 		super();
 		this.id = id;
-		this.idItemPedido = idItemPedido;
-		this.idComanda = idComanda;
+		this.itemPedido = itemPedido;
+		this.comanda = comanda;
 	}
 	
-	public AssocItemPedidoComanda(int idItemPedido, int idComanda) {
-		this(0, idItemPedido, idComanda);
-	}
-
 	public int getId() {
 		return id;
 	}
@@ -29,19 +25,19 @@ public class AssocItemPedidoComanda {
 		this.id = id;
 	}
 
-	public int getIdItemPedido() {
-		return idItemPedido;
+	public ItemPedido getItemPedido() {
+		return itemPedido;
 	}
 
-	public void setIdItemPedido(int idItemPedido) {
-		this.idItemPedido = idItemPedido;
+	public void setItemPedido(ItemPedido itemPedido) {
+		this.itemPedido = itemPedido;
 	}
 
-	public int getIdComanda() {
-		return idComanda;
+	public Comanda getComanda() {
+		return comanda;
 	}
 
-	public void setIdComanda(int idComanda) {
-		this.idComanda = idComanda;
+	public void setComanda(Comanda comanda) {
+		this.comanda = comanda;
 	}
 }

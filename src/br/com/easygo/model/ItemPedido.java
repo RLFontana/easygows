@@ -9,17 +9,17 @@ public class ItemPedido {
 	private double precoUnitario;
 	private Date dataHoraEntrega;
 	private int qtComanda;
-	private int idProduto;
-	private int idGarcom;
-	private int idMesa;
-	private int idPedido;
+	private Produto produto;
+	private Garcom garcom;
+	private Mesa mesa;
+	private Pedido pedido;
 	
 	public ItemPedido() {
-		this(0, 0, "", 0.0, null, 0, 0, 0, 0, 0);
+		this(0, 0, "", 0.0, null, 0, null, null, null, null);
 	}
 	
 	public ItemPedido(int id, int quantidade, String situacao, double precoUnitario, Date dataHoraEntrega,
-			int qtComanda, int idProduto, int idGarcom, int idMesa, int idPedido) {
+			int qtComanda, Produto produto, Garcom garcom, Mesa mesa, Pedido pedido) {
 		super();
 		this.id = id;
 		this.quantidade = quantidade;
@@ -27,10 +27,10 @@ public class ItemPedido {
 		this.precoUnitario = precoUnitario;
 		this.dataHoraEntrega = dataHoraEntrega;
 		this.qtComanda = qtComanda;
-		this.idProduto = idProduto;
-		this.idGarcom = idGarcom;
-		this.idMesa = idMesa;
-		this.idPedido = idPedido;
+		this.produto = produto;
+		this.garcom = garcom;
+		this.mesa = mesa;
+		this.pedido = pedido;
 	}
 	public int getId() {
 		return id;
@@ -62,36 +62,34 @@ public class ItemPedido {
 	public void setDataHoraEntrega(Date dataHoraEntrega) {
 		this.dataHoraEntrega = dataHoraEntrega;
 	}
-	public int getIdProduto() {
-		return idProduto;
-	}
 	public void setQtComanda(int qtComanda) {
 		this.qtComanda = qtComanda;
 	}
 	public int getQtComanda() {
 		return qtComanda;
 	}
-	public void setIdProduto(int idProduto) {
-		this.idProduto = idProduto;
+	public Produto getProduto() {
+		return produto;
 	}
-	public int getIdGarcom() {
-		return idGarcom;
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}	
+	public Garcom getGarcom() {
+		return garcom;
 	}
-	public void setIdGarcom(int idGarcom) {
-		this.idGarcom = idGarcom;
+	public void setGarcom(Garcom garcom) {
+		this.garcom = garcom;
 	}
-	public int getIdMesa() {
-		return idMesa;
+	public Mesa getMesa() {
+		return mesa;
 	}
-	public void setIdMesa(int idMesa) {
-		this.idMesa = idMesa;
+	public void setMesa(Mesa mesa) {
+		this.mesa = mesa;
 	}
-	public int getIdPedido() {
-		return idPedido;
+	public Pedido getPedido() {
+		return pedido;
 	}
-	public void setIdPedido(int idPedido) {
-		this.idPedido = idPedido;
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
 	}
-	
-	
 }
