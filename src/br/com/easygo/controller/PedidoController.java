@@ -17,7 +17,7 @@ import br.com.easygo.model.Pedido;
 @Path("/pedido")
 public class PedidoController {
 	
-	@GET
+	/*@GET
 	@Produces("application/json")
 	public Response associacoes() {
 		Gson gson = new Gson();
@@ -29,7 +29,7 @@ public class PedidoController {
 		String retorno = gson.toJson(pedidos, PedidoDao[].class);
 		
 		return Response.status(200).entity(retorno).build();
-	}
+	}*/
 	
 	@GET
 	@Produces("application/json")

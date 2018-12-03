@@ -17,7 +17,7 @@ import br.com.easygo.model.Comanda;
 @Path("/comanda")
 public class ComandaController {
 	
-	@GET
+	/*@GET
 	@Produces("application/json")
 	public Response associacoes() {
 		Gson gson = new Gson();
@@ -29,7 +29,7 @@ public class ComandaController {
 		String retorno = gson.toJson(comandas, ComandaDao[].class);
 		
 		return Response.status(200).entity(retorno).build();
-	}
+	}*/
 	
 	@GET
 	@Produces("application/json")
