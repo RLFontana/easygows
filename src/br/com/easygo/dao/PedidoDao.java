@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import br.com.easygo.model.Pedido;
+import br.com.easygo.model.Garcom;
 
 public class PedidoDao {
 	private Connection connection = null;
@@ -23,7 +24,7 @@ public class PedidoDao {
 		return conn;
 	}
 	
-	public Pedido[] getListaPedido() {
+	/*public Pedido[] getListaPedido() {
 		Pedido pedido = null;
 		Pedido[] retorno = null;
 		String queryString = "SELECT * FROM pedido";
@@ -60,7 +61,7 @@ public class PedidoDao {
 		}
 		
 		return retorno;
-	}
+	}*/
 	
 	public Pedido getPedidoByCodigo(int numero) {
 		Pedido pedido = new Pedido();
@@ -75,8 +76,25 @@ public class PedidoDao {
 				pedido.setId(resultSet.getInt("id"));
 				pedido.setDataHoraConfirmacao(resultSet.getDate("dataHoraConfirmacao"));
 				pedido.setDataHoraInclusao(resultSet.getDate("dataHoraInclusao"));
-				pedido.setIdGarcom(resultSet.getInt("idGarcom"));
-				pedido.setNumero(resultSet.getInt("numero"));	
+				pedido.setNumero(resultSet.getInt("numero"));
+				
+				queryString = "SELECT * FROM garcom WHERE id = " + resultSet.getInt("idGarcom");
+				
+				try {
+					resultSet = stmt.executeQuery(queryString);
+					
+					if (resultSet.first()) {
+						Garcom garcom = new Garcom();
+						
+						garcom.setId(resultSet.getInt("id"));
+						garcom.setMatricula(resultSet.getString("matricula"));
+						garcom.setNome(resultSet.getString("nome"));
+						
+						pedido.setGarcom(garcom);
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -90,9 +108,11 @@ public class PedidoDao {
 		String queryString;
 		
 		if (pedido.getId() == 0) {
-			queryString = "INSERT INTO " + this.tabela + " VALUES('" + pedido.getNumero() + "','" + pedido.getDataHoraInclusao() + "','" + pedido.getDataHoraConfirmacao() + "', '" + pedido.getIdGarcom() + "')";
+			//queryString = "INSERT INTO " + this.tabela + " VALUES('" + pedido.getNumero() + "','" + pedido.getDataHoraInclusao() + "','" + pedido.getDataHoraConfirmacao() + "', '" + pedido.getIdGarcom() + "')";
+			queryString = "INSERT INTO " + this.tabela + " VALUES('" + pedido.getNumero() + "','" + pedido.getDataHoraInclusao() + "','" + pedido.getDataHoraConfirmacao() + "')";
 		} else {
-			queryString = "UPDATE " + this.tabela + " SET NUMERO = '" + pedido.getNumero() + "', DATAHORAINCLUSAO = '" + pedido.getDataHoraInclusao() + "', DATAHORACONFIRMACAO = '" + pedido.getDataHoraConfirmacao() + "', IDGARCOM = '" + pedido.getIdGarcom() + " WHERE ID = " + pedido.getId();;
+			//queryString = "UPDATE " + this.tabela + " SET NUMERO = '" + pedido.getNumero() + "', DATAHORAINCLUSAO = '" + pedido.getDataHoraInclusao() + "', DATAHORACONFIRMACAO = '" + pedido.getDataHoraConfirmacao() + "', IDGARCOM = '" + pedido.getIdGarcom() + "' WHERE ID = " + pedido.getId();
+			queryString = "UPDATE " + this.tabela + " SET NUMERO = '" + pedido.getNumero() + "', DATAHORAINCLUSAO = '" + pedido.getDataHoraInclusao() + "', DATAHORACONFIRMACAO = '" + pedido.getDataHoraConfirmacao() + " WHERE ID = " + pedido.getId();
 		}
 		
 		try{

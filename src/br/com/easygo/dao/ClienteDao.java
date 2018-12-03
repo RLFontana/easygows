@@ -90,7 +90,7 @@ public class ClienteDao {
 		String queryString;
 		
 		if (cliente.getId() == 0) {
-			queryString = "INSERT INTO " + this.tabela + " VALUES('" + cliente.getNome() + "','" + cliente.getTelefone() + "','" + cliente.getDataNascimento() + "','" + cliente.getFoto()+"')";
+			queryString = "INSERT INTO " + this.tabela + " VALUES('" + cliente.getNome() + "','" + cliente.getTelefone() + "','" + cliente.getDataNascimento() + "','" + cliente.getFoto() + "')";
 		} else {
 			queryString = "UPDATE " + this.tabela + " SET NOME = '" + cliente.getNome() + "', TELEFONE = '" + cliente.getTelefone() + "', DATANASCIMENTO = '" + cliente.getDataNascimento() + "', FOTO = '" + cliente.getFoto() + "' WHERE ID = " + cliente.getId();
 		}

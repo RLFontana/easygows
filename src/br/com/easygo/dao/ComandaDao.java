@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import br.com.easygo.model.Cliente;
 import br.com.easygo.model.Comanda;
 
 public class ComandaDao {
@@ -23,7 +24,7 @@ public class ComandaDao {
 		return conn;
 	}
 	
-	public Comanda[] getListaComanda() {
+	/*public Comanda[] getListaComanda() {
 		Comanda comanda = null;
 		Comanda[] retorno = null;
 		String queryString = "SELECT * FROM comanda";
@@ -60,7 +61,7 @@ public class ComandaDao {
 		}
 		
 		return retorno;
-	}
+	}*/
 	
 	public Comanda getComandaByCodigo(int numero) {
 		Comanda comanda = new Comanda();
@@ -75,8 +76,27 @@ public class ComandaDao {
 				comanda.setId(resultSet.getInt("id"));
 				comanda.setDataHoraAbertura(resultSet.getDate("dataHoraAbertura"));
 				comanda.setDataHoraFechamento(resultSet.getDate("dataHoraFechamento"));
-				comanda.setIdCliente(resultSet.getInt("idCliente"));
-				comanda.setNumero(resultSet.getInt("numero"));	
+				comanda.setNumero(resultSet.getInt("numero"));
+				
+				queryString = "SELECT * FROM cliente WHERE id = " + resultSet.getInt("idCliente");
+				
+				try {
+					resultSet = stmt.executeQuery(queryString);
+					
+					if (resultSet.first()) {
+						Cliente cliente = new Cliente();
+						
+						cliente.setId(resultSet.getInt("id"));
+						cliente.setDataNascimento(resultSet.getDate("dataNascimento"));
+						cliente.setFoto(resultSet.getString("foto"));
+						cliente.setNome(resultSet.getString("nome"));
+						cliente.setTelefone(resultSet.getString("telefone"));
+						
+						comanda.setCliente(cliente);
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -90,9 +110,9 @@ public class ComandaDao {
 		String queryString;
 		
 		if (comanda.getId() == 0) {
-			queryString = "INSERT INTO " + this.tabela + " VALUES('" + comanda.getNumero() + "', '" + comanda.getDataHoraAbertura() + "','" + comanda.getDataHoraFechamento() + "','" + comanda.getIdCliente() + "')";
+			queryString = "INSERT INTO " + this.tabela + " VALUES('" + comanda.getNumero() + "', '" + comanda.getDataHoraAbertura() + "','" + comanda.getDataHoraFechamento() + "','" + comanda.getCliente().getId() + "')";
 		} else {
-			queryString = "UPDATE " + this.tabela + " SET NUMERO = '" + comanda.getNumero() + "', DATAHORAABERTURA = '" + comanda.getDataHoraAbertura() + "', DATAHORAFECHAMENTO = '" + comanda.getDataHoraFechamento() + "', IDCLIENTE = '" + comanda.getIdCliente() + "' WHERE ID = " + comanda.getId();
+			queryString = "UPDATE " + this.tabela + " SET NUMERO = '" + comanda.getNumero() + "', DATAHORAABERTURA = '" + comanda.getDataHoraAbertura() + "', DATAHORAFECHAMENTO = '" + comanda.getDataHoraFechamento() + "', IDCLIENTE = '" + comanda.getCliente().getId() + "' WHERE ID = " + comanda.getId();
 		}
 		
 		try{

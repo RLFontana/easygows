@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import br.com.easygo.model.ItemPedido;
+import br.com.easygo.model.Mesa;
+import br.com.easygo.model.Produto;
 
 public class ItemPedidoDao {
 	private Connection connection = null;
@@ -23,7 +25,7 @@ public class ItemPedidoDao {
 		return conn;
 	}
 	
-	public ItemPedido[] getListaItemPedido() {
+	/*public ItemPedido[] getListaItemPedido() {
 		ItemPedido itemPedido = null;
 		ItemPedido[] retorno = null;
 		String queryString = "SELECT * FROM itempedido";
@@ -65,7 +67,7 @@ public class ItemPedidoDao {
 		}
 		
 		return retorno;
-	}
+	}*/
 	
 	public ItemPedido getItemPedidoByCodigo(int numero) {
 		ItemPedido itemPedido = new ItemPedido();
@@ -79,14 +81,50 @@ public class ItemPedidoDao {
 			if (resultSet.first()) {
 				itemPedido.setId(resultSet.getInt("id"));
 				itemPedido.setDataHoraEntrega(resultSet.getDate("dataHoraEntrega"));
-				itemPedido.setIdGarcom(resultSet.getInt("idGarcom"));
-				itemPedido.setIdMesa(resultSet.getInt("idMesa"));
 				itemPedido.setQtComanda(resultSet.getInt("qtComanda"));
-				itemPedido.setIdPedido(resultSet.getInt("idPedido"));
-				itemPedido.setIdProduto(resultSet.getInt("idProduto"));
 				itemPedido.setPrecoUnitario(resultSet.getDouble("precoUnitario"));
 				itemPedido.setQuantidade(resultSet.getInt("quantidade"));
-				itemPedido.setSituacao(resultSet.getString("situacao"));	
+				itemPedido.setSituacao(resultSet.getString("situacao"));
+				
+				queryString = "SELECT * FROM mesa WHERE id = " + resultSet.getInt("idMesa");
+				
+				try {
+					resultSet = stmt.executeQuery(queryString);
+					
+					if (resultSet.first()) {
+						Mesa mesa = new Mesa();
+						
+						mesa.setId(resultSet.getInt("id"));
+						mesa.setNumero(resultSet.getInt("numero"));
+						mesa.setQuantidadeCadeiras(resultSet.getInt("quantidadedecadeiras"));
+						mesa.setSituacao(resultSet.getString("situacao"));
+						
+						itemPedido.setMesa(mesa);
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				
+				queryString = "SELECT * FROM produto WHERE id = " + resultSet.getInt("idProduto");
+				
+				try {
+					resultSet = stmt.executeQuery(queryString);
+					
+					if (resultSet.first()) {
+						Produto produto = new Produto();
+						
+						produto.setId(resultSet.getInt("id"));
+						produto.setDescricao(resultSet.getString("descricao"));
+						produto.setCodigo(resultSet.getInt("codigo"));
+						produto.setNome(resultSet.getString("nome"));
+						produto.setPreco(resultSet.getDouble("preco"));
+						produto.setTipo(resultSet.getString("tipo"));
+						
+						itemPedido.setProduto(produto);
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -100,9 +138,9 @@ public class ItemPedidoDao {
 		String queryString;
 		
 		if (itemPedido.getId() == 0) {
-			queryString = "INSERT INTO " + this.tabela + " VALUES('" + itemPedido.getQuantidade() + "','" + itemPedido.getSituacao() + "','" + itemPedido.getPrecoUnitario() + "','" + itemPedido.getDataHoraEntrega() + "','" + itemPedido.getQtComanda() + "','" + itemPedido.getIdPedido() + "','" + itemPedido.getIdGarcom() + "','" + itemPedido.getIdMesa() + "','" + itemPedido.getIdPedido() + "')";
+			queryString = "INSERT INTO " + this.tabela + " VALUES('" + itemPedido.getQuantidade() + "','" + itemPedido.getSituacao() + "','" + itemPedido.getPrecoUnitario() + "','" + itemPedido.getDataHoraEntrega() + "','" + itemPedido.getQtComanda() + "','" + itemPedido.getPedido().getId() + "','" + itemPedido.getGarcom().getId() + "','" + itemPedido.getMesa().getId() + "','" + itemPedido.getPedido().getId() + "')";
 		} else {
-			queryString = "UPDATE " + this.tabela + " SET QUANTIDADE = '" + itemPedido.getQuantidade() + "', SITUACAO = '" + itemPedido.getSituacao() + "', PRECOUNITARIO = '" + itemPedido.getPrecoUnitario() + "', DATAHORAENTREGA = '" + itemPedido.getDataHoraEntrega() + ", QTCOMANDA='" + itemPedido.getQtComanda() + "', IDPRODUTO = '" + itemPedido.getIdPedido() + "', IDMESA = '" + itemPedido.getIdMesa() + "' WHERE ID = " + itemPedido.getId();;
+			queryString = "UPDATE " + this.tabela + " SET QUANTIDADE = '" + itemPedido.getQuantidade() + "', SITUACAO = '" + itemPedido.getSituacao() + "', PRECOUNITARIO = '" + itemPedido.getPrecoUnitario() + "', DATAHORAENTREGA = '" + itemPedido.getDataHoraEntrega() + ", QTCOMANDA='" + itemPedido.getQtComanda() + "', IDPRODUTO = '" + itemPedido.getPedido() .getId()+ "', IDMESA = '" + itemPedido.getMesa().getId() + "' WHERE ID = " + itemPedido.getId();
 		}
 		
 		try{
